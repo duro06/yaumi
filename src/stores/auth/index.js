@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import { api } from 'boot/axios'
 import * as storage from 'src/modules/storage'
 import { routerInstance } from 'src/boot/router'
-import { notifErrVue, waitLoad } from 'src/modules/utils'
+import { waitLoad } from 'src/modules/utils'
 
 export const useAuthStore = defineStore('auth', {
   state: () => ({
@@ -26,46 +26,17 @@ export const useAuthStore = defineStore('auth', {
       this.loading = true
       waitLoad('show')
       try {
-        await api.post('/v1/auth/login', payload).then(resp => {
+        await api.post('/v1/login', payload).then(resp => {
           console.log('login', resp)
-          this.status = resp.data.user ? resp.data.user.status : null
-          this.role = resp.data.user ? resp.data.user.role : null
-          this.statusSurveyor = resp.data.user.surveyor ? resp.data.user.surveyor.status : null
-          if (this.role === 'admin' || this.role === 'root') {
-            storage.setLocalToken(resp.data.token)
-            storage.setUser(resp.data.user)
-            const hdd = storage.getLocalToken()
-            const hddUser = storage.getUser()
-            if (hdd) {
-              this.SET_TOKEN_USER(hdd, hddUser)
-            }
-            this.loading = false
-            waitLoad('done')
-          } else if (this.status === 'aktif' && this.statusSurveyor === 3) {
-            storage.setLocalToken(resp.data.token)
-            storage.setUser(resp.data.user)
-            const hdd = storage.getLocalToken()
-            const hddUser = storage.getUser()
-            if (hdd) {
-              this.SET_TOKEN_USER(hdd, hddUser)
-            }
-            this.loading = false
-            waitLoad('done')
-          } else if (this.status === 'aktif' && this.statusSurveyor === 2) {
-            storage.setLocalToken(resp.data.token)
-            storage.setUser(resp.data.user)
-            const hdd = storage.getLocalToken()
-            const hddUser = storage.getUser()
-            if (hdd) {
-              this.SET_TOKEN_USER_PRA(hdd, hddUser)
-            }
-            this.loading = false
-            waitLoad('done')
-          } else {
-            notifErrVue('Error ! akun anda belum aktif')
-            waitLoad('done')
-            routerInstance.push('/notifregistrasi')
+          storage.setLocalToken(resp.data.token)
+          storage.setUser(resp.data.user)
+          const hdd = storage.getLocalToken()
+          const hddUser = storage.getUser()
+          if (hdd) {
+            this.SET_TOKEN_USER(hdd, hddUser)
           }
+          this.loading = false
+          waitLoad('done')
         })
       } catch (error) {
         waitLoad('done')
@@ -88,14 +59,12 @@ export const useAuthStore = defineStore('auth', {
       routerInstance.push('/veriregister')
     },
     REMOVE_LOKAL () {
-      storage.deleteLocalToken()
-      storage.deleteHeaderToken()
-      storage.deleteUser()
+      storage.clearStore()
       this.user = null
       this.token = ''
     },
     async getUser () {
-      await api.get('/v1/auth/profile').then(resp => {
+      await api.get('/v1/profile').then(resp => {
         console.log('me', resp.data.data)
         if (resp.status === 200) {
           storage.setUser(resp.data.data)
@@ -107,7 +76,7 @@ export const useAuthStore = defineStore('auth', {
     async logout () {
       waitLoad('show')
       try {
-        await api.post('/v1/auth/logout').then(resp => {
+        await api.post('/v1/logout').then(resp => {
           this.REMOVE_LOKAL()
           routerInstance.replace('/login')
           waitLoad('done')

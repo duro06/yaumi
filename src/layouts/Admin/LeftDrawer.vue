@@ -1,3 +1,5 @@
+<!-- @format -->
+
 <template>
   <q-drawer
     show-if-above
@@ -6,8 +8,8 @@
     <!-- logo -->
     <div class="absolute-top">
       <div
-        class=" flex flex-center"
-        style="height: 60px;"
+        class="flex flex-center"
+        style="height: 60px"
       >
         <q-avatar size="40px">
           <img src="~assets/logos/lipa.png">
@@ -20,12 +22,12 @@
       > -->
     <div
       class="flex column flex-center full-height"
-      style="height:calc(100%-60px) "
+      style="height: calc(100%-60px)"
     >
       <div
         v-for="(menu, i) in filterMenu()"
         :key="i"
-        @mouseenter="hover(menu,i)"
+        @mouseenter="hover(menu, i)"
       >
         <q-item
           ref="refItem"
@@ -33,9 +35,9 @@
           :to="`/${menu.name}`"
           replace
           class="sidebar flex flex-center"
-          :active-class="props.dark ? 'active-dark text-white' :'active text-primary'"
-          :active="aktif(path)===menu.name"
-          @click="menuClick(menu,i)"
+          :active-class="props.dark ? 'active-dark text-white' : 'active text-primary'"
+          :active="aktif(path) === menu.name"
+          @click="menuClick(menu, i)"
         >
           <q-menu
             ref="refMenu"
@@ -43,17 +45,15 @@
             self="top left"
             transition-show="slide-down"
             transition-hide="slide-right"
-            :offset="[0,0]"
+            :offset="[0, 0]"
           >
             <q-card
               v-if="menu.submenus.length"
-              style="width:200px"
+              style="width: 200px"
             >
               <q-card-section>
                 <div class="text-weight-bold f-12">
-                  <q-item
-                    :to="`/${menu.link}`"
-                  >
+                  <q-item :to="`/${menu.link}`">
                     <q-item-section>{{ menu.nama }}</q-item-section>
                   </q-item>
                 </div>
@@ -62,7 +62,7 @@
                 </div>
 
                 <div
-                  v-for="(submenu,n) in menu.submenus"
+                  v-for="(submenu, n) in menu.submenus"
                   :key="n"
                 >
                   <div v-if="submenu.link">
@@ -71,8 +71,8 @@
                       :to="`/${submenu.link}`"
                       replace
                       class="submenu flex flex-center item item-link"
-                      :active-class="dark? 'active-dark' : 'active'"
-                      :active="path===submenu.name"
+                      :active-class="dark ? 'active-dark' : 'active'"
+                      :active="path === submenu.name"
                       exact
                     >
                       <!-- {{ aktif(menu.name) }} : {{ path }} -->
@@ -94,9 +94,7 @@
             <q-card v-if="!menu.submenus.length">
               <q-card-section>
                 <div class="text-weight-bold f-12">
-                  <q-item
-                    :to="`/${menu.link}`"
-                  >
+                  <q-item :to="`/${menu.link}`">
                     <q-item-section>{{ menu.nama }}</q-item-section>
                   </q-item>
                 </div>
@@ -155,7 +153,8 @@ function filterMenu() {
     return item.rules
       ? item.rules.some(function (group) {
         return group.name === role.value
-      }) : null
+      })
+      : null
   })
   return a
 }
@@ -178,9 +177,6 @@ const hover = (menu, i) => {
     refMenu.value[i].offset[0] = 0
     refMenu.value[i].offset[1] = 0
   }
-  //     if (menu.submenus.length) {
-  // }
-  // console.log('prev', prev.value)
   if (i !== prev.value) {
     leave(prev.value)
   }
@@ -224,32 +220,37 @@ console.log('router', props.dark)
 <style lang="scss" scoped>
 .sidebar {
   width: calc(100% - 10px);
-  height:60px;
+  height: 60px;
 }
 
 .submenu {
   width: calc(100% - 10px);
   height: 30px;
   text-decoration: none;
-  color:$grey-5;
+  color: $grey-5;
 }
 
 a.sidebar {
   text-decoration: none;
-  color:$grey-5;
+  color: $grey-5;
 }
-a.router-link-active, a.router-link-exact-active, a.active {
-    margin-left: 10px;
-    border-radius: 10px 0px 0px 10px;
-    border-left: 3px solid $primary;
-    background-color: $grey-4;
-  }
-a.router-link-active-dark, a.router-link-exact-active-dark, a.active-dark {
-    margin-left: 10px;
-    border-radius: 10px 0px 0px 10px;
-    border-left: 3px solid white;
-    background-color: $dark-page;
-  }
+a.router-link-active,
+a.router-link-exact-active,
+a.active {
+  margin-left: 10px;
+  border-radius: 10px 0px 0px 10px;
+  border-left: 3px solid $primary;
+  color: $primary;
+  background-color: $grey-4;
+}
+a.router-link-active-dark,
+a.router-link-exact-active-dark,
+a.active-dark {
+  margin-left: 10px;
+  border-radius: 10px 0px 0px 10px;
+  border-left: 3px solid white;
+  background-color: $dark-page;
+}
 
 .just-shadow {
   position: absolute;

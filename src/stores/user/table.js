@@ -52,7 +52,7 @@ export const useUserTable = defineStore('user_table', {
       this.loading = true
       const params = { params: this.params }
       try {
-        await api.get('/v1/user/all', params).then(resp => {
+        await api.get('/v1/user/get', params).then(resp => {
           console.log('userdata', resp.data)
           if (resp.status === 200) {
             this.items = resp.data.data

@@ -2,12 +2,11 @@ import { boot } from 'quasar/wrappers'
 import axios from 'axios'
 import { getLocalToken } from 'src/modules/storage'
 import { noftifResp, notifErr } from 'src/modules/utils'
-import { setCssVar, Screen } from 'quasar'
+import { Screen } from 'quasar'
 
-// const SERVER = 'http://api.si-element.test'
-// const SERVER = 'http://localhost/api.si-element/public'
+const SERVER = 'http://localhost/api.yaumi/public'
 // const SERVER = 'http://127.0.0.1:8000'
-const SERVER = 'https://servlipa.udumbarainformatika.my.id'
+// const SERVER = 'https://servlipa.udumbarainformatika.my.id'
 const base = SERVER + '/api'
 const storageServer = SERVER + '/storage/'
 
@@ -51,25 +50,25 @@ const interceptRequest = (config) => {
 }
 api.interceptors.request.use(interceptRequest, interceptReqErrors)
 
-const getDataSetting = () => {
-  return new Promise((resolve) => {
-    api.get('v1/public/info').then((resp) => {
-      // console.log('setting axios', resp.data.themes)
-      const themes = resp.data.themes
-      for (let i = 0; i < themes.length; i++) {
-        setCssVar(themes[i].name, themes[i].value)
-      }
-      resolve(resp)
-    })
-  })
-}
+// const getDataSetting = () => {
+//   return new Promise((resolve) => {
+//     api.get('v1/public/info').then((resp) => {
+//       // console.log('setting axios', resp.data.themes)
+//       const themes = resp.data.themes
+//       for (let i = 0; i < themes.length; i++) {
+//         setCssVar(themes[i].name, themes[i].value)
+//       }
+//       resolve(resp)
+//     })
+//   })
+// }
 
 // set screen
 Screen.setSizes({ xs: 300, sm: 500, md: 800, lg: 1024, xl: 2000 })
 export default boot(({ app }) => {
   app.config.globalProperties.$axios = axios
   app.config.globalProperties.$api = api
-  getDataSetting()
+  // getDataSetting()
 })
 
 // eslint-disable-next-line no-return-assign

@@ -7,7 +7,7 @@ export const useAppSettingStore = defineStore('app_setting', {
     menus: [
       {
         id: 1,
-        nama: 'dashboard',
+        nama: 'Dashboard',
         name: 'dashboard',
         link: 'dashboard',
         icon: 'icon-mat-dashboard',
@@ -29,7 +29,7 @@ export const useAppSettingStore = defineStore('app_setting', {
       },
       {
         id: 2,
-        nama: 'user',
+        nama: 'User',
         name: 'user',
         link: 'user',
         icon: 'icon-mat-person',
@@ -47,7 +47,7 @@ export const useAppSettingStore = defineStore('app_setting', {
       },
       {
         id: 3,
-        nama: 'surveyor',
+        nama: 'Surveyor',
         name: 'surveyor',
         link: 'surveyor',
         icon: 'icon-mat-supervisor_account',
@@ -65,7 +65,7 @@ export const useAppSettingStore = defineStore('app_setting', {
       },
       {
         id: 4,
-        nama: 'puskesmas',
+        nama: 'Puskesmas',
         name: 'puskesmas',
         link: 'puskesmas',
         icon: 'icon-mat-group',
@@ -83,7 +83,7 @@ export const useAppSettingStore = defineStore('app_setting', {
       },
       {
         id: 5,
-        nama: 'master',
+        nama: 'Master',
         name: 'master',
         link: 'master',
         icon: 'icon-mat-settings_alert',
@@ -141,7 +141,7 @@ export const useAppSettingStore = defineStore('app_setting', {
       // },
       {
         id: 6,
-        nama: 'setting',
+        nama: 'Setting',
         name: 'setting',
         link: 'setting',
         icon: 'icon-mat-settings',
@@ -173,7 +173,7 @@ export const useAppSettingStore = defineStore('app_setting', {
         ]
       }
     ],
-    form: { nama: 'Si-Element' },
+    form: { nama: 'yaumi' },
     infos: [],
     themes: []
   }),

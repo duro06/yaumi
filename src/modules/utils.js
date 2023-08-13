@@ -3,9 +3,10 @@ import { routerInstance } from 'boot/router'
 import * as storage from 'src/modules/storage'
 
 const removeToken = () => {
-  storage.deleteLocalToken()
-  storage.deleteHeaderToken()
-  storage.deleteUser()
+  storage.clearStore()
+  // storage.deleteLocalToken()
+  // storage.deleteHeaderToken()
+  // storage.deleteUser()
   routerInstance.replace('/login')
 }
 
@@ -60,56 +61,82 @@ const notifErr = (resp, next) => {
       })
     };
   } else if (status === 422) {
+    // const msgs = resp.data.message
+    const keys = Object.keys(resp.data)
+    keys.forEach(msgkeys => {
+      if (msgkeys === 'errors') {
+        const key = Object.keys(resp.data[msgkeys])
+        // console.log('key', key)
+        key.forEach(msgkey => {
+          resp.data[msgkeys][msgkey].forEach(data => {
+            Notify.create({
+              message: data,
+              icon: 'icon-eva-message-circle-outline',
+              position: 'top-right',
+              color: 'negative',
+              actions: [
+                { label: 'Dismiss', color: 'yellow', handler: () => { /* console.log('wooow') */ } }
+              ]
+              // for (const key in msgs) {
+              // }
+            })
+          })
+        })
+      } else {
+        if (msgkeys !== 'nomor') {
+          Notify.create({
+            message: resp.data[msgkeys],
+            icon: 'icon-eva-message-circle-outline',
+            position: 'top-right',
+            color: 'negative',
+            actions: [
+              { label: 'Dismiss', color: 'yellow', handler: () => { /* console.log('wooow') */ } }
+            ]
+          // for (const key in msgs) {
+          // }
+          })
+        }
+      }
+    })
+  } else if (status === 409) {
     const msgs = resp.data.message
     Notify.create({
       message: msgs,
-      icon: 'icon-eva-message_circle_outline',
-      position: 'bottom-right',
+      icon: 'icon-eva-message-circle-outline',
+      position: 'top-right',
+      color: 'negative',
+      actions: [
+        { label: 'Dismiss', color: 'yellow', handler: () => { /* console.log('wooow') */ } }
+      ]
+    })
+  } else if (status === 500 || status === 410) {
+    let msgs = 'Ada Kesalahan Harap ulangi'
+    if (resp.data) {
+      msgs = resp.data.message ? resp.data.message : 'Ada Kesalahan Harap ulangi'
+    }
+    Notify.create({
+      message: msgs,
+      icon: 'icon-eva-message-circle-outline',
+      position: 'top-right',
       color: 'negative',
       actions: [
         { label: 'Dismiss', color: 'yellow', handler: () => { /* console.log('wooow') */ } }
       ]
     })
   } else {
-    const attempt = parseFloat(localStorage.getItem('attempt'))
-    console.log('attempt', attempt)
-    if (attempt === 1) {
-      Notify.create({
-        message: 'Ada Kesalahan Harap ulangi',
-        icon: 'icon-eva-message_circle_outline',
-        position: 'bottom-right',
-        color: 'negative',
-        actions: [
-          {
-            label: 'Dismiss',
-            color: 'yellow',
-            handler: () => {
-              /* console.log('wooow') */
-            }
-          }
-        ]
-      })
-    } else {
-      Notify.create({
-        message: 'Ada Kesalahan, Coba Refresh',
-        icon: 'icon-eva-message_circle_outline',
-        position: 'bottom-right',
-        color: 'negative',
-        actions: [
-          {
-            label: 'Dismiss',
-            color: 'yellow',
-            handler: () => {
-              /* console.log('wooow') */
-            }
-          }
-        ]
-      })
-    }
-    const toAtt = attempt + 1
-    localStorage.setItem('attempt', toAtt)
+    const msgs = resp.data ? resp.data.message : 'NETWORk ERROR SERVER TIDAK MERESPON'
+    Notify.create({
+      message: msgs,
+      icon: 'icon-eva-message-circle-outline',
+      position: 'top-right',
+      color: 'negative',
+      actions: [
+        { label: 'Dismiss', color: 'yellow', handler: () => { /* console.log('wooow') */ } }
+      ]
+    })
   }
 }
+
 const notifSuccess = (resp) => {
   const msg = resp ? resp.data.message : 'Sucees!, Wow Kerja Bagus!'
   Notify.create({
