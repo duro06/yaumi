@@ -12,7 +12,7 @@
         style="height: 60px"
       >
         <q-avatar size="40px">
-          <img src="~assets/logos/lipa.png">
+          <img src="~assets/logos/logo.png">
         </q-avatar>
       </div>
     </div>

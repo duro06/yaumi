@@ -11,7 +11,7 @@
           style="margin-top:30px"
         >
           <q-avatar size="100px">
-            <img src="~assets/images/lipa.png">
+            <img src="~assets/logos/logo.png">
           </q-avatar>
           <div class="text-h6 text-white">
             Halaman Login
@@ -51,7 +51,7 @@
             />
           </div>
         </q-form>
-        <div class="q-pt-md flex flex-center q-gutter-x-xl">
+        <!-- <div class="q-pt-md flex flex-center q-gutter-x-xl">
           <p
             class="text-primary text-center cursor-pointer"
             @click="toRegSurveyor"
@@ -69,16 +69,16 @@
           >
             <small> Puskesmas</small>
           </p>
-        </div>
+        </div> -->
       </q-card-section>
       <div class="float-bottom q-px-md text-grey-6">
         <q-separator />
         <div class="">
-          Aplikasi LIPA MITRA ini
+          Aplikasi TOKO ini
           tidak di perjualbelikan secara bebas tanpa seizin dari pembuatnya.
         </div>
         <div class="q-mt-lg q-pb-xs text-right f-14">
-          LIPA MITRA Versi BETA
+          TOKO Versi BETA
         </div>
       </div>
     </q-card>
@@ -88,7 +88,7 @@
 import { ref } from 'vue'
 import { useQuasar } from 'quasar'
 import { useAuthStore } from 'src/stores/auth'
-import { routerInstance } from 'src/boot/router'
+// import { routerInstance } from 'src/boot/router'
 
 const storeAuth = useAuthStore()
 const $q = useQuasar()
@@ -104,12 +104,12 @@ function onSubmit () {
   storeAuth.login(form.value)
 }
 
-function toRegSurveyor() {
-  routerInstance.replace('/registrasi')
-}
-function toRegPuskesmas() {
-  routerInstance.replace('/regpuskesmas')
-}
+// function toRegSurveyor() {
+//   routerInstance.replace('/registrasi')
+// }
+// function toRegPuskesmas() {
+//   routerInstance.replace('/regpuskesmas')
+// }
 
 </script>
 
