@@ -12,7 +12,7 @@
         style="height: 60px"
       >
         <q-avatar size="40px">
-          <img src="~assets/logos/logo.png">
+          <img :src=" setting.info.logo!==null ? storageServer + setting.info.logo : '../src/assets/logos/logo.png'">
         </q-avatar>
       </div>
     </div>
@@ -128,7 +128,10 @@
 import { computed, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { useAuthStore } from 'src/stores/auth'
+import { storageServer } from 'src/boot/axios'
+import { useAppSettingStore } from 'src/stores/appsetting/appsetting'
 
+const setting = useAppSettingStore()
 const props = defineProps({
   dark: {
     type: Boolean,

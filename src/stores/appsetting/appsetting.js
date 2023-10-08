@@ -174,7 +174,9 @@ export const useAppSettingStore = defineStore('app_setting', {
       }
     ],
     form: { nama: 'yaumi' },
-    infos: [],
+    info: {
+      logo: null
+    },
     themes: []
   }),
   actions: {
@@ -187,41 +189,48 @@ export const useAppSettingStore = defineStore('app_setting', {
     },
     // api related function
     getInitialData() {
-      this.getDataSetting()
+      this.getInfoToko()
     },
-
-    getDataSetting() {
+    getLogo() {
+      return new Promise(resolve => {
+        api.get('v1/setting/logo')
+          .then(resp => {
+            this.info.logo = resp.data.logo ?? null
+            resolve(resp)
+          })
+      })
+    },
+    getInfoToko() {
+      this.loading = true
       return new Promise((resolve, reject) => {
         api
-          .get('v1/setting/all')
+          .get('v1/setting/info/info-toko')
           .then((resp) => {
-            console.log('setting', resp.data)
-            // this.menus = resp.data[0].menus
-            // this.levels = resp.data[0].levels
-            this.themes = resp.data.themes
-            this.infos = resp.data.infos
-            // this.info = this.infos
+            console.log('info toko', resp.data)
+            this.loading = false
+            this.info = resp.data
             resolve(resp)
           })
           .catch((err) => {
+            this.loading = false
             reject(err)
           })
       })
     },
 
-    saveSetting() {
-      this.form.menus = this.menus
-      this.form.infos = this.infos
+    saveInfo() {
+      // this.form.menus = this.menus
+      const form = this.info
       // this.form.levels = this.levels
-      this.form.themes = this.themes
+      // this.form.themes = this.themes
       this.loading = true
       return new Promise((resolve, reject) => {
         api
-          .post('v1/setting/store', this.form)
+          .post('v1/setting/info/store', form)
           .then((resp) => {
             this.loading = false
             // console.log('simpan', resp)
-            this.getDataSetting()
+            this.getInfoToko()
             resolve(resp)
           })
           .catch((err) => {

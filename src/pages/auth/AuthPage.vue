@@ -11,7 +11,7 @@
           style="margin-top:30px"
         >
           <q-avatar size="100px">
-            <img src="~assets/logos/logo.png">
+            <img :src=" setting.info.logo !== null ? storageServer + setting.info.logo : '../src/assets/logos/logo.png'">
           </q-avatar>
           <div class="text-h6 text-white">
             Halaman Login
@@ -88,8 +88,11 @@
 import { ref } from 'vue'
 import { useQuasar } from 'quasar'
 import { useAuthStore } from 'src/stores/auth'
-// import { routerInstance } from 'src/boot/router'
+import { storageServer } from 'src/boot/axios'
+import { useAppSettingStore } from 'src/stores/appsetting/appsetting'
 
+const setting = useAppSettingStore()
+setting.getLogo()
 const storeAuth = useAuthStore()
 const $q = useQuasar()
 
