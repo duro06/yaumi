@@ -1,8 +1,8 @@
 {
-  "name": "si-elemen",
+  "name": "toko",
   "version": "0.0.1",
-  "description": "Si eleMeN App",
-  "productName": "Si-eleMeN",
+  "description": "Toko App",
+  "productName": "Toko",
   "author": "ryuuu1234 <pharyyady@gmail.com>",
   "private": true,
   "scripts": {
