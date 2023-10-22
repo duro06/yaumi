@@ -12,6 +12,6 @@
 <script setup>
 import { defineAsyncComponent } from 'vue'
 const AsyncComp = defineAsyncComponent(() =>
-  import('./MasterPage.vue')
+  import('./ItemBarang.vue')
 )
 </script>
