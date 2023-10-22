@@ -31,19 +31,19 @@
       >
         <!-- INI JIKA TIDAK PUNYA SUBMENU -->
         <template
-          v-for="(menu, i) in filterMenu"
+          v-for="(menu, i) in menus"
           :key="i"
         >
           <q-item
-            v-if="menu.submenus.length === 0"
+            v-if="menu?.submenus.length === 0"
             v-ripple
             no-padding
             clickable
             bordered
             class="sidebar"
-            :to="`/${menu.link}`"
+            :to="`/${menu.url}`"
             :active-class="props.dark ? 'active-dark text-white' : 'active text-primary'"
-            :active="aktif(path) === menu.name"
+            :active="aktif(path) === menu.url"
           >
             <q-item-section avatar>
               <!-- <q-icon
@@ -53,8 +53,8 @@
               <q-avatar
                 size="32px"
                 :icon="menu.icon"
-                :color="route.matched[1].path === aturLink(menu.link)?'grey-4':'primary'"
-                :text-color="route.matched[1].path === aturLink(menu.link)?'primary':'white'"
+                :color="route.matched[1].path === aturLink(menu.url)?'grey-4':'primary'"
+                :text-color="route.matched[1].path === aturLink(menu.url)?'primary':'white'"
                 font-size="20px"
               />
             </q-item-section>
@@ -66,18 +66,18 @@
             bordered
             separator
             class="sidebar"
-            :value="route.matched[1].path === aturLink(menu.link)"
-            :expand-icon-class="route.matched[1].path === aturLink(menu.link)?'bd-left text-primary':'bg-primary text-white'"
-            :default-opened="route.matched[1].path === aturLink(menu.link)"
-            :header-class="route.matched[1].path === aturLink(menu.link)?'bd-left bg-grey-4 text-primary':'bg-primary text-white'"
+            :value="route.matched[1].path === aturLink(menu.url)"
+            :expand-icon-class="route.matched[1].path === aturLink(menu.url)?'bd-left text-primary':'bg-primary text-white'"
+            :default-opened="route.matched[1].path === aturLink(menu.url)"
+            :header-class="route.matched[1].path === aturLink(menu.url)?'bd-left bg-grey-4 text-primary':'bg-primary text-white'"
           >
             <template #header>
               <q-item-section avatar>
                 <q-avatar
                   size="32px"
                   :icon="menu.icon"
-                  :color="route.matched[1].path === aturLink(menu.link)?'grey-4':'primary'"
-                  :text-color="route.matched[1].path === aturLink(menu.link)?'primary':'white'"
+                  :color="route.matched[1].path === aturLink(menu.url)?'grey-4':'primary'"
+                  :text-color="route.matched[1].path === aturLink(menu.url)?'primary':'white'"
                   font-size="20px"
                 />
               </q-item-section>
@@ -98,19 +98,19 @@
                   v-ripple
                   clickable
                   :active-class="props.dark ? 'active-dark text-white' : 'active-sub text-primary'"
-                  :to="`${aturLink(sub.link)}`"
+                  :to="`${aturLink(sub.url)}`"
                   class="q-pl-xl sub-sidebar"
                 >
                   <!-- :active="link === 'inbox'" -->
                   <q-item-section avatar>
                     <q-icon
-                      :name="route.path.indexOf(aturLink(sub.link)) > -1?'icon-mat-check_circle':'icon-mat-lens'"
+                      :name="route.path.indexOf(aturLink(sub.url)) > -1?'icon-mat-check_circle':'icon-mat-lens'"
                       size="xs"
                     />
                   </q-item-section>
 
                   <q-item-section>
-                    {{ sub.nama }}
+                    {{ sub.menu }}
                   </q-item-section>
                 </q-item>
               </template>
@@ -125,7 +125,7 @@
 <script setup>
 import { computed, ref } from 'vue'
 import { useRoute } from 'vue-router'
-import { useAuthStore } from 'src/stores/auth'
+// import { useAuthStore } from 'src/stores/auth'
 import { storageServer } from 'src/boot/axios'
 import { useAppSettingStore } from 'src/stores/appsetting/appsetting'
 
@@ -142,29 +142,27 @@ const props = defineProps({
   }
 })
 
-const store = useAuthStore()
-const role = computed(() => {
-  return store.user ? store.user.role : 'surveyor'
-})
+// const store = useAuthStore()
+// const role = computed(() => {
+//   return store.user ? store.user.role : ''
+// })
 
-console.log('menudrawer', store.user)
-
-const filterMenu = computed(() => {
-  const arr = props.menus
-  const a = arr.filter(function (item) {
-    return item.rules
-      ? item.rules.some(function (group) {
-        return group.name === role.value
-      })
-      : null
-  })
-  return a
-})
+// const filterMenu = computed(() => {
+//   const arr = props.menus
+//   const a = arr.filter(function (item) {
+//     return item.rules
+//       ? item.rules.some(function (group) {
+//         return group.name === role.value
+//       })
+//       : null
+//   })
+//   return a
+// })
 
 const path = computed(() => useRoute().name)
 
 const aktif = (apem) => {
-  const temp = apem.split('.')
+  const temp = apem.split('/')
   return temp[0]
 }
 

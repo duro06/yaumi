@@ -5,100 +5,100 @@ export const useAppSettingStore = defineStore('app_setting', {
   state: () => ({
     loading: false,
     menus: [
-      {
-        id: 1,
-        menu: 'Dashboard',
-        name: 'dashboard',
-        link: 'dashboard',
-        icon: 'icon-fa-house-chimney-solid',
-        submenus: [],
-        rules: [
-          {
-            id: 1,
-            name: 'root'
-          },
-          {
-            id: 2,
-            name: 'admin'
-          },
-          {
-            id: 3,
-            name: 'surveyor'
-          }
-        ]
-      },
-      {
-        id: 2,
-        menu: 'User',
-        name: 'user',
-        link: 'user',
-        icon: 'icon-mat-person',
-        submenus: [],
-        rules: [
-          {
-            id: 1,
-            name: 'root'
-          },
-          {
-            id: 2,
-            name: 'admin'
-          }
-        ]
-      },
-      {
-        id: 3,
-        menu: 'Surveyor',
-        name: 'surveyor',
-        link: 'surveyor',
-        icon: 'icon-mat-supervisor_account',
-        submenus: [],
-        rules: [
-          {
-            id: 1,
-            name: 'root'
-          },
-          {
-            id: 2,
-            name: 'admin'
-          }
-        ]
-      },
-      {
-        id: 4,
-        menu: 'Puskesmas',
-        name: 'puskesmas',
-        link: 'puskesmas',
-        icon: 'icon-mat-group',
-        submenus: [],
-        rules: [
-          {
-            id: 1,
-            name: 'root'
-          },
-          {
-            id: 2,
-            name: 'admin'
-          }
-        ]
-      },
-      {
-        id: 5,
-        menu: 'Master',
-        name: 'master',
-        link: 'master',
-        icon: 'icon-mat-settings_alert',
-        submenus: [],
-        rules: [
-          {
-            id: 1,
-            name: 'root'
-          },
-          {
-            id: 2,
-            name: 'admin'
-          }
-        ]
-      },
+      // {
+      //   id: 1,
+      //   menu: 'Dashboard',
+      //   name: 'dashboard',
+      //   link: 'dashboard',
+      //   icon: 'icon-fa-house-chimney-solid',
+      //   submenus: [],
+      //   rules: [
+      //     {
+      //       id: 1,
+      //       name: 'root'
+      //     },
+      //     {
+      //       id: 2,
+      //       name: 'admin'
+      //     },
+      //     {
+      //       id: 3,
+      //       name: 'surveyor'
+      //     }
+      //   ]
+      // },
+      // {
+      //   id: 2,
+      //   menu: 'User',
+      //   name: 'user',
+      //   link: 'user',
+      //   icon: 'icon-mat-person',
+      //   submenus: [],
+      //   rules: [
+      //     {
+      //       id: 1,
+      //       name: 'root'
+      //     },
+      //     {
+      //       id: 2,
+      //       name: 'admin'
+      //     }
+      //   ]
+      // },
+      // {
+      //   id: 3,
+      //   menu: 'Surveyor',
+      //   name: 'surveyor',
+      //   link: 'surveyor',
+      //   icon: 'icon-mat-supervisor_account',
+      //   submenus: [],
+      //   rules: [
+      //     {
+      //       id: 1,
+      //       name: 'root'
+      //     },
+      //     {
+      //       id: 2,
+      //       name: 'admin'
+      //     }
+      //   ]
+      // },
+      // {
+      //   id: 4,
+      //   menu: 'Puskesmas',
+      //   name: 'puskesmas',
+      //   link: 'puskesmas',
+      //   icon: 'icon-mat-group',
+      //   submenus: [],
+      //   rules: [
+      //     {
+      //       id: 1,
+      //       name: 'root'
+      //     },
+      //     {
+      //       id: 2,
+      //       name: 'admin'
+      //     }
+      //   ]
+      // },
+      // {
+      //   id: 5,
+      //   menu: 'Master',
+      //   name: 'master',
+      //   link: 'master',
+      //   icon: 'icon-mat-settings_alert',
+      //   submenus: [],
+      //   rules: [
+      //     {
+      //       id: 1,
+      //       name: 'root'
+      //     },
+      //     {
+      //       id: 2,
+      //       name: 'admin'
+      //     }
+      //   ]
+      // },
       // {
       //   id: 5,
       //   menu: 'master',
@@ -139,39 +139,39 @@ export const useAppSettingStore = defineStore('app_setting', {
       //     }
       //   ]
       // },
-      {
-        id: 6,
-        menu: 'Setting',
-        name: 'setting',
-        link: 'setting',
-        icon: 'icon-mat-settings',
-        submenus: [
-          {
-            id: 1,
-            menu: 'info',
-            name: 'setting.info',
-            link: 'setting/info',
-            icon: ''
-          },
-          {
-            id: 2,
-            menu: 'themes',
-            name: 'setting.themes',
-            link: 'setting/themes',
-            icon: ''
-          }
-        ],
-        rules: [
-          {
-            id: 1,
-            name: 'root'
-          },
-          {
-            id: 2,
-            name: 'admin'
-          }
-        ]
-      }
+      // {
+      //   id: 6,
+      //   menu: 'Setting',
+      //   name: 'setting',
+      //   link: 'setting',
+      //   icon: 'icon-mat-settings',
+      //   submenus: [
+      //     {
+      //       id: 1,
+      //       menu: 'info',
+      //       name: 'setting.info',
+      //       link: 'setting/info',
+      //       icon: ''
+      //     },
+      //     {
+      //       id: 2,
+      //       menu: 'themes',
+      //       name: 'setting.themes',
+      //       link: 'setting/themes',
+      //       icon: ''
+      //     }
+      //   ],
+      //   rules: [
+      //     {
+      //       id: 1,
+      //       name: 'root'
+      //     },
+      //     {
+      //       id: 2,
+      //       name: 'admin'
+      //     }
+      //   ]
+      // }
     ],
     form: { menu: 'yaumi' },
     info: {
@@ -190,6 +190,7 @@ export const useAppSettingStore = defineStore('app_setting', {
     // api related function
     getInitialData() {
       this.getInfoToko()
+      this.getMenus()
     },
     getLogo() {
       return new Promise(resolve => {
@@ -197,6 +198,23 @@ export const useAppSettingStore = defineStore('app_setting', {
           .then(resp => {
             this.info.logo = resp.data.logo ?? null
             resolve(resp)
+          })
+      })
+    },
+    getMenus() {
+      this.loading = true
+      return new Promise((resolve, reject) => {
+        api
+          .get('v1/setting/menu/index')
+          .then((resp) => {
+            console.log('menus', resp.data)
+            this.loading = false
+            this.menus = resp.data
+            resolve(resp)
+          })
+          .catch((err) => {
+            this.loading = false
+            reject(err)
           })
       })
     },

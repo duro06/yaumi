@@ -88,7 +88,9 @@ import AdmFooterMenu from './AdmFooterMenu.vue'
 import { useAuthStore } from 'src/stores/auth'
 import { useAppSettingStore } from 'src/stores/appsetting/appsetting'
 
-const menus = useAppSettingStore().menus
+const menus = computed(() => {
+  return useAppSettingStore().menus
+})
 
 const store = useAuthStore()
 const setting = useAppSettingStore()

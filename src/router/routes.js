@@ -12,13 +12,13 @@ const routes = [
       { path: '/master', name: 'master', component: () => import('pages/v1/master/IndexPage.vue') },
       { path: '/user', name: 'user', component: () => import('pages/v1/user/IndexPage.vue') },
       {
-        path: '/setting',
-        name: 'setting',
+        path: '/settings',
+        name: 'settings',
         component: () => import('pages/v1/setting/IndexPage.vue'),
         children: [
-          { path: '/setting', redirect: '/setting/info' },
-          { path: '/setting/info', name: 'setting.info', component: () => import('pages/v1/setting/info/InfoPage.vue') },
-          { path: '/setting/themes', name: 'setting.themes', component: () => import('pages/v1/setting/theme/ThemesPage.vue') }
+          { path: '/settings', redirect: '/settings/app' },
+          { path: '/settings/app', name: 'settings.app', component: () => import('pages/v1/setting/info/InfoPage.vue') },
+          { path: '/settings/themes', name: 'settings.themes', component: () => import('pages/v1/setting/theme/ThemesPage.vue') }
         ]
       },
 
