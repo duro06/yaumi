@@ -23,6 +23,20 @@ const routes = [
         ]
       },
       {
+        path: '/history',
+        name: 'history',
+        component: () => import('pages/v1/history/IndexPage.vue'),
+        children: [
+          { path: '/history', redirect: '/history/history_pembelian' },
+          { path: '/history/history_pembelian', name: 'history.history_pembelian', component: () => import('pages/v1/history/history_pembelian/IndexPage.vue') },
+          { path: '/history/history_pengeluaran_kas', name: 'history.history_pengeluaran_kas', component: () => import('pages/v1/history/history_pengeluaran_kas/IndexPage.vue') },
+          { path: '/history/history_penjualan', name: 'history.history_penjualan', component: () => import('pages/v1/history/history_penjualan/IndexPage.vue') },
+          { path: '/history/pembayaran_hutang', name: 'history.pembayaran_hutang', component: () => import('pages/v1/history/pembayaran_hutang/IndexPage.vue') },
+          { path: '/history/return_pembelian', name: 'history.return_pembelian', component: () => import('pages/v1/history/return_pembelian/IndexPage.vue') },
+          { path: '/history/return_penjualan', name: 'history.return_penjualan', component: () => import('pages/v1/history/return_penjualan/IndexPage.vue') }
+        ]
+      },
+      {
         path: '/member',
         name: 'member',
         component: () => import('pages/v1/member/IndexPage.vue'),
