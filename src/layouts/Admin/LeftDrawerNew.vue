@@ -9,12 +9,14 @@
     <!-- logo -->
     <div class="absolute-top">
       <div
-        class="flex flex-center bg-white"
+        class="flex flex-center"
+        :class="dark?'bg-dark':'bg-white'"
         style="height: 60px"
       >
         <q-avatar
+          style="margin-top:-40px;"
           square
-          size="60px"
+          size="140px"
         >
           <img :src=" setting.info.logo!==null ? storageServer + setting.info.logo : '../src/assets/logos/logo.png'">
         </q-avatar>
@@ -239,8 +241,8 @@ a.router-link-active,
 a.router-link-exact-active,
 a.active {
   // margin-left: 10px;
-  border-radius: 10px 0px 0px 10px;
-  border-left: 3px solid $primary;
+  // border-radius: 10px 0px 0px 10px;
+  // border-left: 3px solid $primary;
   color: $primary;
   background-color: $grey-4;
 }
@@ -254,9 +256,9 @@ a.active-sub {
 a.router-link-active-dark,
 a.router-link-exact-active-dark,
 a.active-dark {
-  margin-left: 10px;
-  border-radius: 10px 0px 0px 10px;
-  border-left: 3px solid white;
+  // margin-left: 10px;
+  // border-radius: 10px 0px 0px 10px;
+  // border-left: 3px solid white;
   background-color: $dark-page;
 }
 

@@ -54,9 +54,9 @@
                 <q-img
                   :src="setting.info.logo!==null ? storageServer + setting.info.logo : '../../../../src/assets/logos/logo.png'"
                   class="cursor-pointer"
-                  @click="changeImage()"
                 />
-                <q-file
+                <!-- <q-file
+                  @click="changeImage()"
                   ref="fileRef"
                   v-model="tempImg"
                   filled
@@ -64,16 +64,16 @@
                   label=" "
                   accept="image/*"
                   @update:model-value="simpanGambar"
-                />
+                /> -->
               </q-avatar>
-              <q-btn
+              <!-- <q-btn
                 round
                 color="primary"
                 size="xs"
                 icon="icon-mat-photo_camera"
                 class="float-bottom"
                 style="top: 55px; right: 50px; transform: translateY(50%);"
-              />
+              /> -->
             </div>
           </div>
         </div>
@@ -83,10 +83,10 @@
 </template>
 <script setup>
 import { useQuasar } from 'quasar'
-import { api, storageServer } from 'src/boot/axios'
-import { notifSuccess, notifSuccessVue } from 'src/modules/utils'
+// import { api, storageServer } from 'src/boot/axios'
+import { notifSuccessVue } from 'src/modules/utils'
 import { useAppSettingStore } from 'src/stores/appsetting/appsetting'
-import { ref } from 'vue'
+// import { ref } from 'vue'
 const $q = useQuasar()
 const mobile = $q.screen.lt.md
 const setting = useAppSettingStore()
@@ -96,8 +96,8 @@ const save = () => {
   })
 }
 
-const fileRef = ref(null)
-const tempImg = ref(null)
+// const fileRef = ref(null)
+// const tempImg = ref(null)
 // const imgUrl = ref(setting.logo ? (storageServer + setting.logo) : new URL('../../../../assets/logos/logo.png', import.meta.url).href)
 // console.log('imge name', imgUrl)
 // watch(() => setting, (apem) => {
@@ -108,38 +108,38 @@ const tempImg = ref(null)
 //     imgUrl.value = new URL('../../../../assets/logos/logo.png', import.meta.url).href
 //   }
 // })
-function changeImage() {
-  fileRef.value.pickFiles()
-}
-const simpanGambar = () => {
-  // console.log('simpan GaMN', tempImg.value.name)
-  // const form = {
-  //   satu: 'aja',
-  //   id: currentUser.id
-  // }
-  const form = new FormData()
-  form.append('id', 1)
-  form.append('gambar', tempImg.value)
-  setting.loading = true
-  return new Promise((resolve, reject) => {
-    // api.post('v1/user/upload', form)
-    api.post('v1/setting/info/logo', form, {
-      headers: {
-        'Content-Type': 'multipart/form-data'
-      }
-    })
-      .then(resp => {
-        notifSuccess(resp)
-        // console.log('image resp', resp)
-        setting.loading = false
-        setting.getInfoToko()
-        tempImg.value = null
-        resolve(resp)
-      })
-      .catch(err => {
-        setting.loading = false
-        reject(err)
-      })
-  })
-}
+// function changeImage() {
+//   fileRef.value.pickFiles()
+// }
+// const simpanGambar = () => {
+//   // console.log('simpan GaMN', tempImg.value.name)
+//   // const form = {
+//   //   satu: 'aja',
+//   //   id: currentUser.id
+//   // }
+//   const form = new FormData()
+//   form.append('id', 1)
+//   form.append('gambar', tempImg.value)
+//   setting.loading = true
+//   return new Promise((resolve, reject) => {
+//     // api.post('v1/user/upload', form)
+//     api.post('v1/setting/info/logo', form, {
+//       headers: {
+//         'Content-Type': 'multipart/form-data'
+//       }
+//     })
+//       .then(resp => {
+//         notifSuccess(resp)
+//         // console.log('image resp', resp)
+//         setting.loading = false
+//         setting.getInfoToko()
+//         tempImg.value = null
+//         resolve(resp)
+//       })
+//       .catch(err => {
+//         setting.loading = false
+//         reject(err)
+//       })
+//   })
+// }
 </script>

@@ -12,11 +12,14 @@
         >
           <q-avatar
             square
-            size="100px"
+            size="140px"
           >
             <img :src=" setting.info.logo !== null ? storageServer + setting.info.logo : '../src/assets/logos/logo.png'">
           </q-avatar>
-          <div class="text-h6 text-white">
+          <div
+            style="margin-top:-40px"
+            class="text-h6 text-white"
+          >
             Halaman Login
           </div>
           <div class="text-white">
@@ -131,7 +134,7 @@ function onSubmit () {
       height:230px;
       position: absolute;
       border-radius: 0 0 50% 50%;
-      background: linear-gradient(-45deg, $secondary, $blue);
+      background: linear-gradient(-45deg, $green-10, $deep-purple-10);
       overflow: hidden;
     }
 }
