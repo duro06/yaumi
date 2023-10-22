@@ -37,6 +37,21 @@ const routes = [
         ]
       },
       {
+        path: '/transaksi',
+        name: 'transaksi',
+        component: () => import('pages/v1/transaksi/IndexPage.vue'),
+        children: [
+          { path: '/transaksi', redirect: '/transaksi/pembelian' },
+          { path: '/transaksi/pembelian', name: 'transaksi.pembelian', component: () => import('pages/v1/transaksi/pembelian/IndexPage.vue') },
+          { path: '/transaksi/order_pembelian', name: 'transaksi.order_pembelian', component: () => import('pages/v1/transaksi/order_pembelian/IndexPage.vue') },
+          { path: '/transaksi/pembayaran_hutang_supplier', name: 'transaksi.pembayaran_hutang_supplier', component: () => import('pages/v1/transaksi/pembayaran_hutang_supplier/IndexPage.vue') },
+          { path: '/transaksi/pembelian_dua', name: 'transaksi.pembelian_dua', component: () => import('pages/v1/transaksi/pembelian_dua/IndexPage.vue') },
+          { path: '/transaksi/pengeluaran_kas', name: 'transaksi.pengeluaran_kas', component: () => import('pages/v1/transaksi/pengeluaran_kas/IndexPage.vue') },
+          { path: '/transaksi/return_pembelian', name: 'transaksi.return_pembelian', component: () => import('pages/v1/transaksi/return_pembelian/IndexPage.vue') },
+          { path: '/transaksi/return_penjualan', name: 'transaksi.return_penjualan', component: () => import('pages/v1/transaksi/return_penjualan/IndexPage.vue') }
+        ]
+      },
+      {
         path: '/member',
         name: 'member',
         component: () => import('pages/v1/member/IndexPage.vue'),
