@@ -7,8 +7,16 @@ const routes = [
     children: [
       { path: '', redirect: '/dashboard' },
       { path: '/dashboard', name: 'dashboard', component: () => import('pages/IndexPage.vue') },
-      { path: '/puskesmas', name: 'puskesmas', component: () => import('pages/v1/puskesmas/IndexPage.vue') },
       { path: '/user', name: 'user', component: () => import('pages/v1/user/IndexPage.vue') },
+      {
+        path: '/member',
+        name: 'member',
+        component: () => import('pages/v1/member/IndexPage.vue'),
+        children: [
+          { path: '/member', redirect: '/member/cetak_kartu' },
+          { path: '/member/cetak_kartu', name: 'member.cetak_kartu', component: () => import('pages/v1/member/cetak_kartu/IndexPage.vue') }
+        ]
+      },
       {
         path: '/file',
         name: 'file',
