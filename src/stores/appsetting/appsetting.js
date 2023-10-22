@@ -7,10 +7,10 @@ export const useAppSettingStore = defineStore('app_setting', {
     menus: [
       {
         id: 1,
-        nama: 'Dashboard',
+        menu: 'Dashboard',
         name: 'dashboard',
         link: 'dashboard',
-        icon: 'icon-mat-dashboard',
+        icon: 'icon-fa-house-chimney-solid',
         submenus: [],
         rules: [
           {
@@ -29,7 +29,7 @@ export const useAppSettingStore = defineStore('app_setting', {
       },
       {
         id: 2,
-        nama: 'User',
+        menu: 'User',
         name: 'user',
         link: 'user',
         icon: 'icon-mat-person',
@@ -47,7 +47,7 @@ export const useAppSettingStore = defineStore('app_setting', {
       },
       {
         id: 3,
-        nama: 'Surveyor',
+        menu: 'Surveyor',
         name: 'surveyor',
         link: 'surveyor',
         icon: 'icon-mat-supervisor_account',
@@ -65,7 +65,7 @@ export const useAppSettingStore = defineStore('app_setting', {
       },
       {
         id: 4,
-        nama: 'Puskesmas',
+        menu: 'Puskesmas',
         name: 'puskesmas',
         link: 'puskesmas',
         icon: 'icon-mat-group',
@@ -83,7 +83,7 @@ export const useAppSettingStore = defineStore('app_setting', {
       },
       {
         id: 5,
-        nama: 'Master',
+        menu: 'Master',
         name: 'master',
         link: 'master',
         icon: 'icon-mat-settings_alert',
@@ -101,28 +101,28 @@ export const useAppSettingStore = defineStore('app_setting', {
       },
       // {
       //   id: 5,
-      //   nama: 'master',
+      //   menu: 'master',
       //   name: 'master',
       //   link: 'master',
       //   icon: 'icon-mat-settings_alert',
       //   submenus: [
       //     {
       //       id: 1,
-      //       nama: 'bidang survei',
+      //       menu: 'bidang survei',
       //       name: 'master.bidangSurvei',
       //       link: 'master/bidangSurvei',
       //       icon: ''
       //     },
       //     {
       //       id: 2,
-      //       nama: 'status kepegawaian',
+      //       menu: 'status kepegawaian',
       //       name: 'master.statusKepegawaian',
       //       link: 'master/statusKepegawaian',
       //       icon: ''
       //     },
       //     {
       //       id: 2,
-      //       nama: 'profesi',
+      //       menu: 'profesi',
       //       name: 'master.profesi',
       //       link: 'master/profesi',
       //       icon: ''
@@ -141,21 +141,21 @@ export const useAppSettingStore = defineStore('app_setting', {
       // },
       {
         id: 6,
-        nama: 'Setting',
+        menu: 'Setting',
         name: 'setting',
         link: 'setting',
         icon: 'icon-mat-settings',
         submenus: [
           {
             id: 1,
-            nama: 'info',
+            menu: 'info',
             name: 'setting.info',
             link: 'setting/info',
             icon: ''
           },
           {
             id: 2,
-            nama: 'themes',
+            menu: 'themes',
             name: 'setting.themes',
             link: 'setting/themes',
             icon: ''
@@ -173,7 +173,7 @@ export const useAppSettingStore = defineStore('app_setting', {
         ]
       }
     ],
-    form: { nama: 'yaumi' },
+    form: { menu: 'yaumi' },
     info: {
       logo: null
     },
@@ -219,17 +219,13 @@ export const useAppSettingStore = defineStore('app_setting', {
     },
 
     saveInfo() {
-      // this.form.menus = this.menus
       const form = this.info
-      // this.form.levels = this.levels
-      // this.form.themes = this.themes
       this.loading = true
       return new Promise((resolve, reject) => {
         api
           .post('v1/setting/info/store', form)
           .then((resp) => {
             this.loading = false
-            // console.log('simpan', resp)
             this.getInfoToko()
             resolve(resp)
           })

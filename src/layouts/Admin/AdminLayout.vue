@@ -10,7 +10,7 @@
       :mobile="mobile"
       @toggle-left="toggleLeftDrawer"
     />
-    <LeftDrawer
+    <LeftDrawerNew
       v-if="!mobile"
       v-model="leftDrawerOpen"
       :dark="dark"
@@ -82,7 +82,7 @@
 import { useQuasar } from 'quasar'
 import { computed, onMounted, ref } from 'vue'
 
-import LeftDrawer from './LeftDrawer.vue'
+import LeftDrawerNew from './LeftDrawerNew.vue'
 import AdmHeader from './AdmHeader.vue'
 import AdmFooterMenu from './AdmFooterMenu.vue'
 import { useAuthStore } from 'src/stores/auth'
