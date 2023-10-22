@@ -9,6 +9,20 @@ const routes = [
       { path: '/dashboard', name: 'dashboard', component: () => import('pages/IndexPage.vue') },
       { path: '/user', name: 'user', component: () => import('pages/v1/user/IndexPage.vue') },
       {
+        path: '/laporan',
+        name: 'laporan',
+        component: () => import('pages/v1/laporan/IndexPage.vue'),
+        children: [
+          { path: '/laporan', redirect: '/laporan/laporan_keuangan' },
+          { path: '/laporan/laporan_keuangan', name: 'laporan.laporan_keuangan', component: () => import('pages/v1/laporan/laporan_keuangan/IndexPage.vue') },
+          { path: '/laporan/laporan_keuangan_b', name: 'laporan.laporan_keuangan_b', component: () => import('pages/v1/laporan/laporan_keuangan_b/IndexPage.vue') },
+          { path: '/laporan/laporan_pembelian', name: 'laporan.laporan_pembelian', component: () => import('pages/v1/laporan/laporan_pembelian/IndexPage.vue') },
+          { path: '/laporan/laporan_pengeluaran_kas', name: 'laporan.laporan_pengeluaran_kas', component: () => import('pages/v1/laporan/laporan_pengeluaran_kas/IndexPage.vue') },
+          { path: '/laporan/laporan_penjualan', name: 'laporan.laporan_penjualan', component: () => import('pages/v1/laporan/laporan_penjualan/IndexPage.vue') },
+          { path: '/laporan/rekap_kasir_harian', name: 'laporan.rekap_kasir_harian', component: () => import('pages/v1/laporan/rekap_kasir_harian/IndexPage.vue') }
+        ]
+      },
+      {
         path: '/member',
         name: 'member',
         component: () => import('pages/v1/member/IndexPage.vue'),
