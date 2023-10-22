@@ -48,6 +48,7 @@
             <div>
               <q-avatar
                 size="180px"
+                square
                 class="cursor-pointer float-center"
               >
                 <q-img
@@ -60,7 +61,7 @@
                   v-model="tempImg"
                   filled
                   dense
-                  label="Profile Thumnail"
+                  label=" "
                   accept="image/*"
                   @update:model-value="simpanGambar"
                 />

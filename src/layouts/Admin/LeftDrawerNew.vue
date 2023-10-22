@@ -12,7 +12,10 @@
         class="flex flex-center bg-white"
         style="height: 60px"
       >
-        <q-avatar size="40px">
+        <q-avatar
+          square
+          size="60px"
+        >
           <img :src=" setting.info.logo!==null ? storageServer + setting.info.logo : '../src/assets/logos/logo.png'">
         </q-avatar>
       </div>
@@ -25,6 +28,7 @@
       :bar-style="barStyle"
     >
       <q-list
+        v-if="menus.length"
         :class="dark?'bg-dark q-mb-xl':'bg-white text-dark q-mb-xl'"
         bordered
         separator
@@ -118,6 +122,14 @@
           </q-expansion-item>
         </template>
       </q-list>
+      <app-card
+        v-if="!menus.length"
+        :is-header="false"
+      >
+        <template #content>
+          <app-no-data text="Belum ada Menu" />
+        </template>
+      </app-card>
     </q-scroll-area>
   </q-drawer>
 </template>

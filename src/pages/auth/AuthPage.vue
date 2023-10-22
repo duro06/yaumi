@@ -10,7 +10,10 @@
           class="text-center"
           style="margin-top:30px"
         >
-          <q-avatar size="100px">
+          <q-avatar
+            square
+            size="100px"
+          >
             <img :src=" setting.info.logo !== null ? storageServer + setting.info.logo : '../src/assets/logos/logo.png'">
           </q-avatar>
           <div class="text-h6 text-white">
@@ -128,7 +131,7 @@ function onSubmit () {
       height:230px;
       position: absolute;
       border-radius: 0 0 50% 50%;
-      background: linear-gradient(-45deg, $secondary, $primary);
+      background: linear-gradient(-45deg, $secondary, $blue);
       overflow: hidden;
     }
 }
