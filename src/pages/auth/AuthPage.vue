@@ -1,5 +1,21 @@
 <template>
-  <q-page class="flex column flex-center">
+  <q-page class="flex column flex-center bg-dark frame">
+    <!-- <q-page class=" bg-dark"> -->
+    <!-- <div class="frame"> -->
+    <div
+      v-for="(star, index) in stars"
+      :key="index"
+      :class="star.rotation==='moveRight'?'star':'star2'"
+      :style="{
+        'top': star.top + 'px',
+        'left': star.left + 'px',
+        'width': star.radius + 'px',
+        'height': star.radius + 'px',
+        'animation-duration': star.duration + 's',
+      }"
+    />
+    <BgAnimation class="z--" />
+
     <q-card
       flat
       bordered
@@ -57,25 +73,6 @@
             />
           </div>
         </q-form>
-        <!-- <div class="q-pt-md flex flex-center q-gutter-x-xl">
-          <p
-            class="text-primary text-center cursor-pointer"
-            @click="toRegSurveyor"
-          >
-            <small> Surveyor</small>
-          </p>
-          <p
-            class="text-primary text-center q-pb-md"
-          >
-            REGISTRASI
-          </p>
-          <p
-            class="text-primary text-center cursor-pointer"
-            @click="toRegPuskesmas"
-          >
-            <small> Puskesmas</small>
-          </p>
-        </div> -->
       </q-card-section>
       <div class="float-bottom q-px-md text-grey-6">
         <q-separator />
@@ -88,6 +85,7 @@
         </div>
       </div>
     </q-card>
+    <!-- </div> -->
   </q-page>
 </template>
 <script setup>
@@ -96,7 +94,7 @@ import { useQuasar } from 'quasar'
 import { useAuthStore } from 'src/stores/auth'
 import { storageServer } from 'src/boot/axios'
 import { useAppSettingStore } from 'src/stores/appsetting/appsetting'
-
+import BgAnimation from './BgAnimation.vue'
 const setting = useAppSettingStore()
 setting.getLogo()
 const storeAuth = useAuthStore()
@@ -113,12 +111,41 @@ function onSubmit () {
   storeAuth.login(form.value)
 }
 
-// function toRegSurveyor() {
-//   routerInstance.replace('/registrasi')
+// stars
+const stars = ref([])
+function randomNumber(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min
+}
+function makeStar() {
+  // console.log(randomNumber(0, 5) % 2)
+  stars.value = []
+  let starRotation = randomNumber(0, 5) % 2 === 0 ? 'moveRight' : 'moveLeft'
+  for (let i = 0; i < 350; i++) {
+    starRotation = starRotation === 'moveRight' ? 'moveLeft' : 'moveRight'
+    const starTop = randomNumber(0, $q.screen.height)
+    const starLeft = randomNumber(0, $q.screen.width)
+    const starRadius = randomNumber(2, 4)
+    const starDuration = randomNumber(10, 300)
+
+    stars.value.push({
+      top: starTop,
+      left: starLeft,
+      radius: starRadius,
+      rotation: starRotation,
+      duration: starDuration
+    })
+  }
+}
+// function cangeCourse() {
+//   stars.value.forEach(a => {
+//     a.radius = randomNumber(0, 5) % 2 === 0 ? randomNumber(2, 4) : a.radius
+//   })
 // }
-// function toRegPuskesmas() {
-//   routerInstance.replace('/regpuskesmas')
-// }
+// setInterval(() => {
+//   cangeCourse()
+// }, 500)
+makeStar()
+// -------
 
 </script>
 
@@ -139,6 +166,11 @@ function onSubmit () {
     }
 }
 
+.frame{
+  width: 100vw;
+  height:100vh;
+  overflow: hidden;
+}
 @media(max-width:800px){
     .card-login {
         width: 100vw;
@@ -147,6 +179,76 @@ function onSubmit () {
           &::before {
             width: 100vw;
           }
+          z-index: 2;
     }
+}
+
+// kunang2
+.star{
+  display: block;
+  background-color: #fdd10e;
+  position: absolute;
+  border-radius: 100%;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-name: moveRight;
+  overflow: hidden;
+}
+.star2{
+  display: block;
+  background-color: #fdd10e;
+  position: absolute;
+  border-radius: 100%;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-name: moveRight;
+  overflow: hidden;
+}
+
+@keyframes moveRight {
+    from {
+      transform: rotate(0deg) translateX(800px) rotate(0deg);
+      opacity: 1;
+      overflow: hidden;
+    }
+    to   {
+      transform: rotate(360deg) translateX(800px) rotate(-360deg);
+      opacity: 0.5;
+      overflow: hidden;
+    }
+
+}
+
+@keyframes moveLeft {
+    from {
+      transform: rotate(0deg) translateX(800px) rotate(0deg);
+      opacity: 1;
+      overflow: hidden;
+    }
+    to   {
+      transform: rotate(-360deg) translateX(800px) rotate(360deg);
+      opacity: 0.5;
+      overflow: hidden;
+    }
+}
+.top-page {
+  position: relative;
+  text-align: center;
+  background: linear-gradient(60deg, $secondary 0%, $primary 100%);
+
+  .inner-top-page {
+      width: 100%;
+      height:100vh;
+      margin:0;
+      padding: 0;
+    }
+
+}
+.z-- {
+  z-index: 0;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  height: 15vh;
 }
 </style>

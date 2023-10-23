@@ -39,7 +39,7 @@ function makeStar() {
     const starTop = randomNumber(0, $q.screen.height)
     const starLeft = randomNumber(0, $q.screen.width)
     const starRadius = randomNumber(2, 4)
-    const starDuration = randomNumber(6, 16)
+    const starDuration = randomNumber(30, 150)
 
     stars.value.push({
       top: starTop,
@@ -72,6 +72,7 @@ setInterval(() => {
 <style lang="scss" scoped>
 .frame {
   background-color: #000;
+  overflow: hidden  ;
 }
 .star{
   display: block;
@@ -94,22 +95,22 @@ setInterval(() => {
 
 @keyframes moveRight {
     from {
-      transform: rotate(0deg) translateX(8px) rotate(0deg);
+      transform: rotate(0deg) translateX(360px) rotate(0deg);
       opacity: 1;
     }
     to   {
-      transform: rotate(360deg) translateX(8px) rotate(-360deg);
+      transform: rotate(360deg) translateX(360px) rotate(-360deg);
       opacity: 0.5;
     }
 }
 
 @keyframes moveLeft {
     from {
-      transform: rotate(0deg) translateX(8px) rotate(0deg);
+      transform: rotate(0deg) translateX(360px) rotate(0deg);
       opacity: 1;
     }
     to   {
-      transform: rotate(-360deg) translateX(8px) rotate(360deg);
+      transform: rotate(-360deg) translateX(360px) rotate(360deg);
       opacity: 0.5;
     }
 }

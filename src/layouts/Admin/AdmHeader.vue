@@ -10,15 +10,15 @@
     >
       <!-- LEFT -->
       <div>
-        <q-btn
+        <!-- <q-btn
           v-if="!mobile"
           flat
           round
           icon="icon-mat-segment"
           class="flip__icon"
           @click="emit('toggleLeft')"
-        />
-        <div v-else>
+        /> -->
+        <div v-if="mobile">
           <q-btn
             v-if="menu"
             flat
@@ -124,7 +124,7 @@ import { storageServer } from 'src/boot/axios'
 import AdmHeaderMenuProfile from './AdmHeaderMenuProfile.vue'
 
 const store = useAuthStore()
-const emit = defineEmits(['toggleLeft'])
+// const emit = defineEmits(['toggleLeft'])
 defineProps({
   dark: {
     type: Boolean,

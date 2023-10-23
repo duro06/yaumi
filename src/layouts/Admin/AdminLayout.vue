@@ -6,6 +6,7 @@
     :class="dark ? '' : 'page-light'"
   >
     <AdmHeader
+      v-model="headerOpen"
       :dark="dark"
       :mobile="mobile"
       @toggle-left="toggleLeftDrawer"
@@ -36,8 +37,103 @@
     <q-page-container>
       <div
         v-if="!mobile"
-        class="q-pa-md"
+        class=""
       >
+        <div>
+          <q-bar dense>
+            <q-space />
+            <q-btn
+              v-if="leftDrawerOpen"
+              size="10px"
+              flat
+              round
+              icon="icon-fa-arrow-left-solid"
+              @click="toggleLeftDrawer"
+            >
+              <q-tooltip
+                transition-show="flip-right"
+                transition-hide="flip-left"
+              >
+                Hide Left Menu
+              </q-tooltip>
+            </q-btn>
+            <q-btn
+              v-if="!leftDrawerOpen"
+              size="10px"
+              flat
+              round
+              icon="icon-fa-arrow-right-solid"
+              @click="toggleLeftDrawer"
+            >
+              <q-tooltip
+                transition-show="flip-right"
+                transition-hide="flip-left"
+              >
+                Show Left Menu
+              </q-tooltip>
+            </q-btn>
+            <q-btn
+              v-if="headerOpen"
+              size="10px"
+              flat
+              round
+              icon="icon-fa-arrow-up-solid"
+              @click="toggleHeader"
+            >
+              <q-tooltip
+                transition-show="flip-right"
+                transition-hide="flip-left"
+              >
+                Hide Top
+              </q-tooltip>
+            </q-btn>
+            <q-btn
+              v-if="!headerOpen"
+              size="10px"
+              flat
+              round
+              icon="icon-fa-arrow-down-solid"
+              @click="toggleHeader"
+            >
+              <q-tooltip
+                transition-show="flip-right"
+                transition-hide="flip-left"
+              >
+                Show Top
+              </q-tooltip>
+            </q-btn>
+            <q-btn
+              v-if="leftDrawerOpen && headerOpen"
+              size="10px"
+              flat
+              round
+              icon="icon-fa-maximize-solid"
+              @click="expand"
+            >
+              <q-tooltip
+                transition-show="flip-right"
+                transition-hide="flip-left"
+              >
+                Hide Top And Left Menu
+              </q-tooltip>
+            </q-btn>
+            <q-btn
+              v-if="!leftDrawerOpen && !headerOpen"
+              size="10px"
+              flat
+              round
+              icon="icon-fa-minimize-solid"
+              @click="shrink"
+            >
+              <q-tooltip
+                transition-show="flip-right"
+                transition-hide="flip-left"
+              >
+                Show Top And Left Menu
+              </q-tooltip>
+            </q-btn>
+          </q-bar>
+        </div>
         <router-view />
       </div>
       <div
@@ -95,6 +191,7 @@ const menus = computed(() => {
 const store = useAuthStore()
 const setting = useAppSettingStore()
 const leftDrawerOpen = ref(false)
+const headerOpen = ref(true)
 const rightDrawerOpen = ref(false)
 const $q = useQuasar()
 const mobile = $q.screen.lt.md
@@ -110,6 +207,17 @@ function setDark(val) {
 
 function toggleLeftDrawer() {
   leftDrawerOpen.value = !leftDrawerOpen.value
+}
+function toggleHeader() {
+  headerOpen.value = !headerOpen.value
+}
+function expand() {
+  leftDrawerOpen.value = false
+  headerOpen.value = false
+}
+function shrink() {
+  leftDrawerOpen.value = true
+  headerOpen.value = true
 }
 
 onMounted(() => {
