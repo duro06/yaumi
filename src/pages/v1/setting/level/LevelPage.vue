@@ -5,7 +5,7 @@
         Level
       </div>
     </div>
-    <div class="row q-ma-md no-wrap q-col-gutter-md">
+    <div class="row q-ma-sm no-wrap q-col-gutter-md">
       <div
         class="col-4"
       >
@@ -21,6 +21,17 @@
                 <div class="col-10">
                   <app-input
                     label="Nama"
+                    outlined
+                  />
+                </div>
+              </div>
+              <div class="row q-mt-sm items-center no-wrap">
+                <div class="col-2">
+                  Level
+                </div>
+                <div class="col-10">
+                  <app-input
+                    label="Level"
                     outlined
                   />
                 </div>
