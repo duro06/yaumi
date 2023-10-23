@@ -5,10 +5,9 @@
         Level
       </div>
     </div>
-    <div class="row q-ma-md no-wrap justify-start">
+    <div class="row q-ma-md no-wrap q-col-gutter-md">
       <div
-        class="q-mr-md"
-        style="width:300px;"
+        class="col-4"
       >
         <div class="bd-left-form">
           <app-card-icon
@@ -44,16 +43,46 @@
           </app-card-icon>
         </div>
       </div>
-      <div class="">
+      <div class="col-8">
         <div class="bd-left-table">
-          anu
-          table
+          <app-card
+            title="Tabel Level"
+            desc="Level dan nama level yang ada di aplikasi"
+          >
+            <template #content>
+              <app-table
+                title=" "
+                :columns="table.columns"
+                :column-hide="table.columnHide"
+                :items="table.items"
+                :meta="table.meta"
+                :per-page="table.params.per_page"
+                :order-by="table.params.order_by"
+                :sort="table.params.sort"
+                :loading="table.loading"
+                :to-search="table.params.q"
+                @set-order="table.setOrder"
+                @set-row="table.setPerPage"
+                @goto="table.setPage"
+                @delete-ids="table.deletesData"
+                @delete="table.deletesData"
+                @find="table.setSearch"
+                @refresh="table.refreshTable"
+              />
+            <!-- @new-data="form.newData"
+            @edit-data="form.editData" -->
+            </template>
+          </app-card>
         </div>
       </div>
     </div>
   </div>
 </template>
-
+<script setup>
+import { useLevelTable } from 'src/stores/setting/level/table'
+const table = useLevelTable()
+table.getDataTable()
+</script>
 <style lang="scss" scoped>
 .bd-left-form{
   border-left: 3px solid #F89C2C;
