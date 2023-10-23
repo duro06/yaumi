@@ -40,7 +40,10 @@
         class=""
       >
         <div>
-          <q-bar dense>
+          <q-bar
+            dense
+            class="back"
+          >
             <q-space />
             <q-btn
               v-if="leftDrawerOpen"
@@ -229,3 +232,8 @@ onMounted(() => {
 //   rightDrawerOpen.value = !rightDrawerOpen.value
 // }
 </script>
+<style lang="scss" scoped>
+.back{
+  background-color: #fff;
+}
+</style>
